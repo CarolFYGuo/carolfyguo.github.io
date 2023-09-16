@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import emailIcon from './assets/icons/email.png';
 import facebookIcon from './assets/icons/facebook.png';
 import githubIcon from './assets/icons/github.png';
@@ -7,10 +7,54 @@ import linkedInIcon from './assets/icons/linkedin.png';
 import resumeIcon from './assets/icons/resume.png';
 import myself from './assets/myself.png';
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
+const breakpoints = {
+  sm: 640,
+  // => @media (min-width: 640px) { ... }
+
+  md: 1024,
+  // => @media (min-width: 1024px) { ... }
+
+  lg: 1280,
+
+  cssValues: {
+    sm: '640px',
+    // => @media (min-width: 640px) { ... }
+
+    md: '1024px',
+    // => @media (min-width: 1024px) { ... }
+
+    lg: '1280px',
+    // => @media (min-width: 1280px) { ... }
+  },
+}
+
 function App() {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions(),
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header py-20 pl-20">
+      <header className={windowDimensions.width > breakpoints.md ? "App-header py-20 pl-20 pr-4": "App-header"}>
         <div className='flex flex-row'>
           <div className='flex flex-col justify-center ml-12'>
             <div className='flex flex-col text-start'>
@@ -32,7 +76,7 @@ function App() {
               <img src={facebookIcon} onClick={() => {window.open('https://www.facebook.com/lilylilylilyguo', '_blank');}} className='m-3 hover:cursor-pointer'/>
             </div>
           </div>
-          <img src={myself} className='h-[80vh]'/>
+          {windowDimensions.width > breakpoints.md  && <img src={myself} className='h-[80vh]'/>}
         </div>
       </header>
     </div>
