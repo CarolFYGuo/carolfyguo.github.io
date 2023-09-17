@@ -62,7 +62,7 @@ function App() {
                 Hello World! I'm Carol!
               </h1>
               <h2 className='text-3xl text-primaryText font-MontserratSemiBold mb-3'>
-                I am a programmer and a creater 🚀 
+                I am a coder and a creator 🚀 
               </h2>
               <p className='text-xl text-primaryText font-MontserratMedium mb-3'>
                 I work as a full-stack developer specializing in React Native and React.js. with a knack for turning coffee into code and debugging into an art form. I'm just an email away. Reach out and let's chat!
