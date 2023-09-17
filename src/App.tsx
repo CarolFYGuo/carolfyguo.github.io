@@ -52,6 +52,8 @@ function App() {
     };
   }, []);
 
+  const year = new Date().getFullYear();
+
   return (
     <div className="App">
       <header className={windowDimensions.width > breakpoints.md ? "App-header py-20 pl-20 pr-4": "App-header py-24"}>
@@ -79,6 +81,9 @@ function App() {
           <img src={myself} className={windowDimensions.width > breakpoints.md ? 'h-[80vh]' : 'mt-4'} />
         </div>
       </header>
+      <footer className='font-MontserratRegular'>
+        Copyright &copy; {year},  Carol(Fangyi) Guo
+      </footer>
     </div>
   );
 }
