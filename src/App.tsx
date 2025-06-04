@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className={windowDimensions.width > breakpoints.md ? "App-header py-20 pl-20 pr-4": "App-header py-24"}>
+      {/* <header className={windowDimensions.width > breakpoints.md ? "App-header py-20 pl-20 pr-4": "App-header py-24"}>
         <div className={windowDimensions.width > breakpoints.md ? 'flex flex-row' : "flex flex-col" }>
           <div className={windowDimensions.width > breakpoints.md ? 'flex flex-col justify-center ml-12' : 'flex flex-row justify-center mx-8'}>
             <div className='flex flex-col text-start'>
@@ -83,7 +83,7 @@ function App() {
       </header>
       <footer className='font-MontserratRegular'>
         Copyright &copy; {year},  Carol(Fangyi) Guo
-      </footer>
+      </footer> */}
     </div>
   );
 }
