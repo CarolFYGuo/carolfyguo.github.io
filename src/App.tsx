@@ -1,11 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import emailIcon from './assets/icons/email.png';
+{/* import emailIcon from './assets/icons/email.png';
 import facebookIcon from './assets/icons/facebook.png';
 import githubIcon from './assets/icons/github.png';
 import linkedInIcon from './assets/icons/linkedin.png';
 import resumeIcon from './assets/icons/resume.png';
-import myself from './assets/myself.png';
+import myself from './assets/myself.png';*/}
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
