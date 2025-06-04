@@ -1,5 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
+const {
+  lightBlue,
+  blueGray,
+  warmGray,
+  trueGray,
+  coolGray,
+  ...safeColors
+} = colors
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -26,13 +34,8 @@ module.exports = {
         MontserratThinItalic: ["Montserrat-ThinItalic"],
       },
       colors: {
-        ...colors,
+        ...safeColors,
         primaryText: "#303030",
-        sky: colors.sky,         // replaces lightBlue
-        stone: colors.stone,     // replaces warmGray
-        neutral: colors.neutral, // replaces trueGray
-        gray: colors.gray,       // replaces coolGray
-        slate: colors.slate,
       }
     },
   },
