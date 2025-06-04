@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <title>Code the Maze</title>
+  <title>Maze Game</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -57,44 +57,126 @@
       font-weight: 600;
       font-style: normal;
     }
+
+    /* CSS */
+    .button-1 {
+      background-color: #EA4C89;
+      border-radius: 8px;
+      border-style: none;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-block;
+      font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      height: 54px;
+      line-height: 20px;
+      list-style: none;
+      margin: 0;
+      outline: none;
+      padding: 10px 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      transition: color 100ms;
+      vertical-align: baseline;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-1:hover,
+    .button-1:focus {
+      background-color: #F082AC;
+    }
+    .font-large {
+      font-size: 2rem;
+    }
+    .font-medium {
+      font-size: 1.5rem;
+    }
+    .font-norm {
+      font-size: 1rem;
+    }
+    .header-style {
+      background-color: #fff268;
+      color: #000000;
+      padding: 2rem;
+      text-align: center;
+    }
+    .link-style {
+      text-decoration: underline;
+    }
+    .text-box {
+      border:#000000 solid 1px;
+    }
+    #outputFrame {
+      border: 1px solid #ccc;
+      height: 440px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1 class="montserrat-font">Let's Learn How to Code the Maze! <i class="fa-solid fa-gamepad"></i></h1>
-    <p class="montserrat-font">Learn JavaScript by creating your own maze game!</p>
+  <header class="header-style">
+    <h1 class="montserrat-font font-large">Let's Learn How to Code the Maze! <i class="fa-solid fa-gamepad"></i></h1>
+    <p class="montserrat-font font-medium">Using JavaScript to design your own maze game!</p>
   </header>
   <main>
     <section class="editor">
-      <h2 class="montserrat-bold-font">Write Your Code</h2>
-      <textarea id="codeArea">// Example: draw a box
-let canvas = document.getElementById("mazeCanvas");
-let ctx = canvas.getContext("2d");
-ctx.fillStyle = "#00aaff";
-ctx.fillRect(10, 10, 100, 100);</textarea>
-      <button class="montserrat-font" onclick="runCode()">Run Code</button>
+      <h2>Write Your Code</h2>
+      <textarea id="codeArea" class="text-box">
+        // Example: draw a box
+        let canvas = document.getElementById("mazeCanvas");
+        let ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#00aaff";
+        ctx.fillRect(10, 10, 100, 100);
+      </textarea>
+      <button class="button-1" role="button" onclick="runCode()">Run Code!</button>
     </section>
     <section class="preview">
-      <h2 class="montserrat-bold-font">Maze Output</h2>
+      <h2>Maze Output</h2>
       <iframe id="outputFrame"></iframe>
     </section>
   </main>
   <footer>
-    <p>&copy; 2025 Code the Maze Project | Designed for Year 8 Digital Technologies</p>
+    <p class="montserrat-font font-medium ">Here are some resources you can use!</p>
+    <p>
+      <a class="montserrat-font font-norm link-style" href="https://www.youtube.com/watch?v=fGdd9qNwQdQ&list=PLoYCgNOIyGACTDHuZtn0qoBdpzV9c327V" target="_blank">Tutorial Series</a> |
+      <a class="montserrat-font font-norm link-style" href="https://docs.google.com/presentation/d/1k7vbaIln4nYALUGGoW2jYuQN0AFUxfOV9OaCWNxsb2c/edit?usp=sharing" target="_blank">Student Guide</a> |
+      <a class="montserrat-font font-norm link-style" href="https://docs.google.com/document/d/1KHEtTL9P9NBjpa99AAizQxyj4pS-E5Kz/edit?usp=drive_link&ouid=107723174236982885672&rtpof=true&sd=true" target="_blank">Assessment Rubric</a>
+    </p>
+    <p class="montserrat-font">&copy; 2025 Code the Maze Project | Designed for Year 8 Digital Technologies</p>
   </footer>
   <script>
     function runCode() {
       const code = document.getElementById("codeArea").value;
+      const safeWrappedCode = `
+        <script>
+          window.addEventListener("DOMContentLoaded", () => {
+            try {
+              (function() {
+                ${code}
+              })();
+            } catch (err) {
+              const errorBox = document.createElement('pre');
+              errorBox.style.color = 'red';
+              errorBox.textContent = "Error: " + err.message;
+              document.body.appendChild(errorBox);
+            }
+          });
+        <\/script>
+      `;
+
       const output = `
         <html>
           <body>
-            <canvas id="mazeCanvas" width="400" height="400"></canvas>
-            <script>
-              ${code}
-            <\/script>
+            <canvas id="mazeCanvas" width="400" height="400" style="border:1px solid #ccc;"></canvas>
+            ${safeWrappedCode}
           </body>
         </html>
       `;
+
       const iframe = document.getElementById("outputFrame");
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       doc.open();
