@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
+/* const colors = require('tailwindcss/colors');
 const {
   lightBlue,
   blueGray,
@@ -7,7 +7,7 @@ const {
   trueGray,
   coolGray,
   ...safeColors
-} = colors
+} = colors*/
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -34,7 +34,6 @@ module.exports = {
         MontserratThinItalic: ["Montserrat-ThinItalic"],
       },
       colors: {
-        ...safeColors,
         primaryText: "#303030",
       }
     },
